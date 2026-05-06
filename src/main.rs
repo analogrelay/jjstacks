@@ -14,5 +14,10 @@ impl Greeter {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let args: Vec<String> = std::env::args().collect();
+    let name = args.get(1).cloned().unwrap_or_else(|| "world".to_string());
+    let lang = args.get(2).cloned().unwrap_or_else(|| "en".to_string());
+
+    let greeter = Greeter { name, language: lang };
+    println!("{}", greeter.format_greeting());
 }
